@@ -1,6 +1,19 @@
+const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-module.exports = {
+const __DEV__ = process.env.NODE_ENV === 'development';
+const __PROD__ = process.env.NODE_ENV === 'production';
+
+const config = {
+    entry: './src/index',
+    devtool: false,
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: __DEV__ ? '[name].js' : '[name].[chunkhash].js',
+        publicPath: '/'
+    },
+    resolve: {},
+    externals: {},
     module: {
         rules: [
             {
@@ -31,8 +44,16 @@ module.exports = {
             filename: './index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].css',
+            filename: '[name].[chunkhash].css',
             chunkFilename: '[id].css'
         })
     ]
 };
+
+if (__DEV__) {
+    config.plugins.push();
+}
+if (__PROD__) {
+}
+
+module.exports = config;
