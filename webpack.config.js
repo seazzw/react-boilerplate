@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const __DEV__ = process.env.NODE_ENV === 'development';
-const __PROD__ = process.env.NODE_ENV === 'production';
+const __PROD__ = process.env.NODE_ENV === 'production'
 
 const config = {
     entry: './src/index',
