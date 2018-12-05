@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import PropTypes from 'prop-types';
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types'; // eslint-disable-line
+import ReactDOM from 'react-dom';
 import './main.css';
 class App extends Component {
     render() {
