@@ -1,5 +1,5 @@
 {
-    "name": "react_demo",
+    "name": "react_boilerplate",
     "version": "1.0.0",
     "description": "从零开始的react + webpack demo",
     "main": "index.js",
