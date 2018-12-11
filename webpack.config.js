@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const __DEV__ = process.env.NODE_ENV === 'development';
 const __PROD__ = process.env.NODE_ENV === 'production';
 
+// TODO:配置happypack
+// TODO:webpack配置放入一个文件夹
 const config = {
     entry: './src/index',
     devtool: false,
@@ -33,8 +35,13 @@ const config = {
                 ]
             },
             {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
+                test: /\.scss$/,
+                exclude: /node_modules/,
+                use: [
+                    __DEV__ ? 'style-loader' : MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'sass-loader'
+                ]
             }
         ]
     },
