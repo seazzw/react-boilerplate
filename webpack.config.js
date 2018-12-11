@@ -42,6 +42,23 @@ const config = {
                     'css-loader',
                     'sass-loader'
                 ]
+            },
+            {
+                test: /\.(png|jpg|gif|jpeg|svg)$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'file-loader',
+                        options: {
+                            name: '[hash:8].[ext]'
+                        }
+                    }
+                ]
+            },
+            {
+                test: /\.(eot|otf|ttf|woff|woff2)$/,
+                exclude: /node_modules/,
+                use: 'file-loader'
             }
         ]
     },
