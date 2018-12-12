@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const __DEV__ = process.env.NODE_ENV === 'development';
-const __PROD__ = process.env.NODE_ENV === 'production';
+// const __PROD__ = process.env.NODE_ENV === 'production';
 
 // TODO:配置happypack
 // TODO:webpack配置放入一个文件夹
@@ -37,9 +37,17 @@ const baseConfig = {
                 test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [
-                    __DEV__ ? 'style-loader' : MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'sass-loader'
+                    { loader: __DEV__ ? 'style-loader' : MiniCssExtractPlugin.loader },
+                    { loader: 'css-loader' },
+                    { loader: 'sass-loader' },
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            plugins: [
+                                require('autoprefixer')
+                            ]
+                        }
+                    }
                 ]
             },
             {
@@ -47,8 +55,9 @@ const baseConfig = {
                 exclude: /node_modules/,
                 use: [
                     {
-                        loader: 'file-loader',
+                        loader: 'url-loader',
                         options: {
+                            limit: 10000, // 把小于10000B的文件打成Base64的格式，写入JS
                             name: '[hash:8].[ext]'
                         }
                     }
@@ -67,7 +76,7 @@ const baseConfig = {
             filename: './index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].[chunkhash].css',
+            filename: '[name].[chunkhash:8].css',
             chunkFilename: '[id].css'
         })
     ]
