@@ -6,12 +6,11 @@ const __PROD__ = process.env.NODE_ENV === 'production';
 
 // TODO:配置happypack
 // TODO:webpack配置放入一个文件夹
-const config = {
+const baseConfig = {
     entry: './src/index',
-    devtool: false,
     output: {
-        path: path.join(__dirname, 'dist'),
-        filename: __DEV__ ? '[name].js' : '[name].[chunkhash].js',
+        path: path.resolve(__dirname, '../dist'),
+        filename: __DEV__ ? '[name].js' : '[name].[chunkhash:8].js',
         publicPath: '/'
     },
     resolve: {},
@@ -74,10 +73,4 @@ const config = {
     ]
 };
 
-if (__DEV__) {
-    config.plugins.push();
-}
-if (__PROD__) {
-}
-
-module.exports = config;
+module.exports = baseConfig;
