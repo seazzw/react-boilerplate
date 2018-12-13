@@ -1,11 +1,11 @@
 const path = require('path');
+const chalk = require('chalk');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const __DEV__ = process.env.NODE_ENV === 'development';
 // const __PROD__ = process.env.NODE_ENV === 'production';
+console.log(chalk.cyan('build path:', __dirname));
 
-// TODO:配置happypack
-// TODO:webpack配置放入一个文件夹
 const baseConfig = {
     entry: './src/index',
     output: {
